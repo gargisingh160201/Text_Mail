@@ -11,12 +11,19 @@ def mail_thread_to_text(mail_txt: str):
     if not is_html:
         return mail_txt
 
-    first_ltr = soup.find('div')
+    first_div = soup.find('div')
+    div_siblings = [first_div] + (first_div.find_next_siblings('div'))
 
-    return first_ltr.text if first_ltr else mail_txt
+    pure_text = ''
+
+    for div in div_siblings:
+        if not div.has_attr('class'):
+            pure_text += '{}\n'.format(div.text)
+
+    return pure_text
 
 if __name__ == '__main__':
-    pure_text = mail_thread_to_text(sample_mail_bodies[0].get('message_body'))
+    # pure_text = mail_thread_to_text(sample_mail_bodies[-2].get('message_body'))
     # print(pure_text)
 
     all_mail_text = []
