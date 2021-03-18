@@ -1,4 +1,5 @@
-from sample_test_cases import hotmail
+from sample_test_cases import Gmail
+from sample_test_cases import yahoo
 from bs4 import BeautifulSoup
 
 def mail_thread_to_text(mail_txt: str):
@@ -11,7 +12,7 @@ def mail_thread_to_text(mail_txt: str):
     if not is_html:
         return mail_txt
 
-    first_div = soup.find(['div', 'p']) # p for thunderbird
+    first_div = soup.find('div',{"dir": "ltr"})
     # div_siblings = [first_div] + (first_div.find_next_siblings('div'))
 
     # pure_text = ''
@@ -25,7 +26,7 @@ def mail_thread_to_text(mail_txt: str):
     #
     # return div_siblings[0].text
 
-    return first_div.text
+    return first_div.get_text(separator="\n",strip=True)
 
 if __name__ == '__main__':
     # pure_text = mail_thread_to_text(sample_mail_bodies[-2].get('message_body'))
@@ -33,7 +34,7 @@ if __name__ == '__main__':
 
     all_mail_text = []
 
-    sample_mails = [mail['message_body'] for mail in hotmail.mail_responses]
+    sample_mails = [mail['message_body'] for mail in Gmail.Responses]
     for mail in sample_mails:
         all_mail_text.append(mail_thread_to_text(mail))
 
