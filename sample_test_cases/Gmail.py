@@ -13,6 +13,18 @@ Responses=[
 } ,
 {
     "message_body": "<div dir=\"ltr\"><div style=\"box-sizing:border-box;font-size:14px;font-family:Lato,sans-serif;color:rgb(49,60,70);background-color:rgb(249,249,252);white-space:pre-wrap;width:auto\">this test for paras</div><br style=\"box-sizing:border-box;color:rgb(49,60,70);font-family:Lato,sans-serif;font-size:14px;white-space:pre-wrap;background-color:rgb(249,249,252)\"><div style=\"box-sizing:border-box;font-size:14px;font-family:Lato,sans-serif;color:rgb(49,60,70);background-color:rgb(249,249,252);white-space:pre-wrap;width:auto\">this is second paragraph, with a comma and !$%#%$#@%$#%</div><div style=\"box-sizing:border-box;font-size:14px;font-family:Lato,sans-serif;color:rgb(49,60,70);background-color:rgb(249,249,252);white-space:pre-wrap;width:auto\">this is a new line</div><br style=\"box-sizing:border-box;color:rgb(49,60,70);font-family:Lato,sans-serif;font-size:14px;white-space:pre-wrap;background-color:rgb(249,249,252)\"><div style=\"box-sizing:border-box;font-size:14px;font-family:Lato,sans-serif;color:rgb(49,60,70);background-color:rgb(249,249,252);white-space:pre-wrap;width:auto\">hello aur sunao</div><div style=\"box-sizing:border-box;font-size:14px;font-family:Lato,sans-serif;color:rgb(49,60,70);background-color:rgb(249,249,252);white-space:pre-wrap;width:auto\">kaise ho </div><br style=\"box-sizing:border-box;color:rgb(49,60,70);font-family:Lato,sans-serif;font-size:14px;white-space:pre-wrap;background-color:rgb(249,249,252)\"><div style=\"box-sizing:border-box;font-size:14px;font-family:Lato,sans-serif;color:rgb(49,60,70);background-color:rgb(249,249,252);white-space:pre-wrap;width:auto\">                               I have empty spaces before and after starting of this line                 </div></div>\r\n"
+},
+{
+    "message_body": "<div dir=\"ltr\"><img src=\"cid:ii_kmhcn47u0\" alt=\"image.png\" width=\"204\" height=\"247\"><br></div>\r\n"
+},
+{
+    "message_body": "<div dir=\"ltr\">Shinchan : <img src=\"cid:ii_kmhczgfw0\" alt=\"image.png\" width=\"542\" height=\"542\"><br></div>\r\n"
+},
+{
+    "message_body": "<div dir=\"ltr\">shinchan is nice</div><br><div class=\"gmail_quote\"><div dir=\"ltr\" class=\"gmail_attr\">On Sat, Mar 20, 2021 at 12:07 PM Gargi Singh &lt;<a href=\"mailto:gargi@whozzat.com\">gargi@whozzat.com</a>&gt; wrote:<br></div><blockquote class=\"gmail_quote\" style=\"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex\"><div dir=\"ltr\">Shinchan : <img src=\"cid:ii_kmhczgfw0\" alt=\"image.png\" width=\"542\" height=\"542\"><br></div>\r\n</blockquote></div>\r\n"
+},
+{
+    "message_body": "<div dir=\"ltr\">New testing for signature <br><br clear=\"all\"><div><br></div>-- <br><div dir=\"ltr\" class=\"gmail_signature\" data-smartmail=\"gmail_signature\"><div dir=\"ltr\">new testyobgjkgjmbk,v cxmv nfjmbgn,mgbg,n h</div></div></div>\r\n"
 }
     ]
 

@@ -11,7 +11,7 @@ def mail_thread_to_text(mail_txt: str):
     if not is_html:
         return mail_txt
 
-    first_div = soup.find(['div'])
+    first_div = soup.find('div',{"dir": "ltr"})
     # div_siblings = [first_div] + (first_div.find_next_siblings('div'))
 
     # pure_text = ''
@@ -24,8 +24,11 @@ def mail_thread_to_text(mail_txt: str):
     #     return pure_text
     #
     # return div_siblings[0].text
-
-    return first_div.get_text(separator="\n",strip=True)
+    if first_div is None:
+        for EachPart in soup.select('div[class*="yahoo_quoted"]'):
+            return EachPart.get_text()
+    else:
+        return first_div.get_text(separator="\n",strip=True)
 
 if __name__ == '__main__':
     # pure_text = mail_thread_to_text(sample_mail_bodies[-2].get('message_body'))

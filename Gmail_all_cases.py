@@ -1,6 +1,6 @@
 from sample_test_cases import Gmail
 from bs4 import BeautifulSoup
-
+from sample_test_cases import Gmail
 def mail_thread_to_text(mail_txt: str):
 
     if not mail_txt:
@@ -12,6 +12,11 @@ def mail_thread_to_text(mail_txt: str):
         return mail_txt
 
     first_div = soup.find('div',{"dir": "ltr"})
+
+    for div in soup.find_all("div", {'class': 'gmail_signature'}):
+        div.decompose()
+
+
     # div_siblings = [first_div] + (first_div.find_next_siblings('div'))
 
     # pure_text = ''
