@@ -24,40 +24,47 @@ def trim_the_mail(mail_content: str, mail_client: str):
 
 
 def trim_mailspring(soup):
+    # remove signatures
+    # signature_tags = soup.find_all('signature')
+    # if signature_tags:
+    #     for tag in signature_tags:
+    #         tag.decompose()
+
+    gmail_quote_attribution_index = None
 
     # approach1
-    # root_elements = soup.findChildren()
-    #
-    # for i, element in enumerate(root_elements):
-    #     element_class = element.attrs.get('class')
-    #     if element_class and 'gmail_quote_attribution' in element_class:
-    #         gmail_quote_attribution_index = i
-    #         break
-    # else:
-    #     return ''.join([str(e) for e in root_elements])
-    #
-    # relevant_elements = root_elements[:gmail_quote_attribution_index]
-    #
-    # return ''.join([str(e) for e in relevant_elements])
+    root_elements = soup.findChildren(recursive=False)
+
+    for i, element in enumerate(root_elements):
+        element_class = None if isinstance(element, str) else element.attrs.get('class')
+        if element_class and 'gmail_quote_attribution' in element_class:
+            gmail_quote_attribution_index = i
+            break
+
+    if gmail_quote_attribution_index:
+        for extra_tag in root_elements[gmail_quote_attribution_index:]:
+            extra_tag.decompose()
+
+    # remove latest signature
+    for i, element in enumerate(root_elements):
+        if element.findChild('signature', recursive=False):
+            element.decompose()
+            break
+
 
     # approach2
-
-    gmail_quote_attribution_div = soup.find('div', {'class': 'gmail_quote_attribution'})
-
+    #
+    # gmail_quote_attribution_div = soup.findChildren('div', {'class': 'gmail_quote_attribution'})
+    #
     # remove threads
-    if gmail_quote_attribution_div:
-        extra_tags = [gmail_quote_attribution_div] + gmail_quote_attribution_div.find_next_siblings()
-
-        for tag in extra_tags:
-            tag.decompose()
-
-    # remove signatures
-    signature_tags = soup.find_all('signature')
-    if signature_tags:
-        for tag in signature_tags:
-            tag.decompose()
+    # if gmail_quote_attribution_div:
+    #     extra_tags = gmail_quote_attribution_div + gmail_quote_attribution_div[0].find_next_siblings()
+    #
+    #     for tag in extra_tags:
+    #         tag.decompose()
 
     return str(soup)
+
 
 def trim_outlook(soup, mail_client: str):
     pass

@@ -65,14 +65,14 @@
   },
   {
     "sno": 16,
-    "message_body": "<div>forwarding a thread</div><div class=\"gmail_quote\"><br/><div>---------- Forwarded Message ---------</div><br/><div>From: Deepam Gupta &lt;deepam@whozzat.com&gt;</div><div>Subject: Re: mailspring for mail trim</div><div>Date: Mar 17 2021, at 7:19 pm</div><div>To: tcs_indore@hellomailtest.msg91.com</div><br/><div>this message wil contain previous thread</div><br/></div>"
+    "message_body": "<div>forwarding a thread</div><div class=\"gmail_quote\"><br/><div>---------- Forwarded Message ---------</div><br/><div>From: Deepam Gupta &lt;deepam@whozzat.com&gt;</div><div>Subject: Re: mailspring for mail trim</div><div>Date: Mar 17 2021, at 7:19 pm</div><div>To: tcs_indore@hellomailtest.msg91.com</div><br/><div>this message wil contain previous thread</div><br/><div class=\"gmail_quote_attribution\">On Mar 17 2021, at 7:17 pm, Deepam Gupta &lt;deepam@whozzat.com&gt; wrote:</div><blockquote><div>first simple message</div></blockquote></div>"
   },
   {
     "sno": 17,
-    "message_body": "<div>a forwarded message with replies and signature</div><br/><div></div><div class=\"gmail_quote\"><br/><div>---------- Forwarded Message ---------</div><br/><div>From: Deepam Gupta &lt;deepam@whozzat.com&gt;</div><div>Subject: Re: mailspring for mail trim</div><div>Date: Mar 17 2021, at 7:19 pm</div><div>To: tcs_indore@hellomailtest.msg91.com</div><br/><div>this message wil contain previous thread</div><br/></div>"
+    "message_body": "<div>a forwarded message with replies and signature</div><br/><div class=\"gmail_quote\"><br/><div>---------- Forwarded Message ---------</div><br/><div>From: Deepam Gupta &lt;deepam@whozzat.com&gt;</div><div>Subject: Re: mailspring for mail trim</div><div>Date: Mar 17 2021, at 7:19 pm</div><div>To: tcs_indore@hellomailtest.msg91.com</div><br/><div>this message wil contain previous thread</div><br/><div class=\"gmail_quote_attribution\">On Mar 17 2021, at 7:17 pm, Deepam Gupta &lt;deepam@whozzat.com&gt; wrote:</div><blockquote><div>first simple message</div></blockquote></div>"
   },
   {
     "sno": 18,
-    "message_body": "<div>Signature waal mail ka reply</div><br/><div></div>"
+    "message_body": "<div>Signature waal mail ka reply</div><br/>"
   }
 ]
