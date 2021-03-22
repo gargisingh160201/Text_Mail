@@ -10,9 +10,7 @@ def trim_the_mail(mail_text: str, mail_client: str):
     is_html = bool(soup.find())
     if not is_html: # exception
         return mail_text
-    if mail_client == 'outlook':
-        return trim_outlook(soup, mail_client)
-    elif mail_client == 'gmail':
+    if mail_client == 'gmail':
         return trim_gmail(soup)
 
     return mail_text
