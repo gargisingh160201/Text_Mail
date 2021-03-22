@@ -42,6 +42,7 @@ def trim_mailspring(soup):
         p.findChild('signature', recursive=False),
         recursive=False)
 
+
     if signature:
         signature.decompose()
 
