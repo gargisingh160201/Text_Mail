@@ -1,17 +1,19 @@
-from sample_test_cases import hotmail_outlook, gmail_mailspring
+from sample_test_cases import mailspring, outlook, yahoo, gmail
 from bs4 import BeautifulSoup
 import json
 import logging
 from custom_exceptions import *
+import os
 
 logger = logging.getLogger(__name__)
-
 
 
 def trim_the_mail(mail_content, mail_client):
     allowed_mail_clients = [
         'mailspring',
-        'outlook'
+        'outlook',
+        'gmail',
+        'yahoo'
     ]
 
     try:
@@ -30,7 +32,6 @@ def trim_the_mail(mail_content, mail_client):
             logger.exception(err_msg)
             raise NotFoundError(err_msg)
 
-
         soup = BeautifulSoup(mail_content, 'html.parser')
 
         # mail_content not html
@@ -42,6 +43,10 @@ def trim_the_mail(mail_content, mail_client):
             return trim_outlook(soup, mail_client)
         elif mail_client == 'mailspring':
             return trim_mailspring(soup)
+        elif mail_client == 'gmail':
+            return trim_gmail(soup)
+        elif mail_client == 'yahoo':
+            return trim_yahoo(soup)
 
         return mail_content
 
@@ -90,24 +95,81 @@ def trim_outlook(soup, mail_client: str):
     pass
 
 
+def trim_gmail(soup):
+    try:
+        first_div = soup.find('div', {"dir": "ltr"})
+
+        signature = first_div.find('div', {"dir": "ltr", "class": "gmail_signature"}, recursive=False)
+        if signature:
+            signature.decompose()
+
+        gmail_quote_div = soup.find('div', {'class': 'gmail_quote'})
+        if gmail_quote_div:
+            gmail_attr_div = gmail_quote_div.find('div', {'dir': 'ltr', 'class': 'gmail_attr'})
+            if '---------- Forwarded message ---------' not in gmail_attr_div.getText():
+                gmail_quote_div.decompose()
+
+        for div in soup.find_all("div", {'class': 'gmail_signature'}):
+            div.decompose()
+
+        # div_siblings = [first_div] + (first_div.find_next_siblings('div'))
+
+        return str(first_div)
+
+    except Exception as e:
+        logger.exception(e)
+        print(e)
+
+
+def trim_yahoo(soup):
+    # para_tag = soup.find('div', {"class": "yahoo-style-wrap"})
+    #
+    # if para_tag:
+    #     required_text = para_tag.find_all('div', {"dir": "ltr"})
+    #     return str(required_text)
+    #
+    # for EachPart in soup.select('div[class*="yahoo-style-wrap"]'):
+    #     return str(EachPart)
+    #
+    # signature_tag = soup.select('div[class*="signature"]')
+    # if signature_tag:
+    #     signature_tag[0].decompose()
+    #
+    # first_div = soup.find('div', {"dir": "ltr"})
+    #
+    # if first_div is None:
+    #     for EachPart in soup.select('div[class*="yahoo_quoted"]'):
+    #         return str(EachPart)
+    # else:
+    #     return str(first_div)
+
+    yahoo_quoted_div = soup.body.find('div', {'class': 'yahoo-quoted'}, recursive=False)
+    if yahoo_quoted_div:
+        yahoo_quoted_div.decompose()
+
+    return str(soup)
+
+
+
+
 if __name__ == '__main__':
 
     try:
         all_mail_text = []
-        mail_client = 'mailspring'
+        mail_client = 'yahoo'
 
-        sample_mails_list = [mail_response['message_body'] for mail_response in gmail_mailspring.mail_responses]
+        sample_mails_list = [
+            mail_response['message_body']
+            for mail_response in yahoo.mail_responses
+        ]
 
         for sno, mail in enumerate(sample_mails_list):
             trimmed_mail = trim_the_mail(mail, mail_client)
             all_mail_text.append({"sno": sno, "message_body": trimmed_mail})
 
-        with open('output.json', 'w') as f:
+        with open(os.path.join('outputs', f'output_{mail_client}.json'), 'w') as f:
             json.dump(all_mail_text, f)
 
-    except FileNotFoundError as e:
-        logger.exception('Something went wrong while writing ouput in file')
-        print(e)
     except Exception as e:
         logger.exception('Something went wrong in main method')
         print(e)
