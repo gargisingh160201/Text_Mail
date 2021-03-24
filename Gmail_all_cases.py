@@ -21,9 +21,20 @@ def trim_the_mail(mail_text: str, mail_client: str):
 def trim_gmail(soup):
     try:
         first_div = soup.find('div', {"dir": "ltr"})
+        signature=first_div.find('div',{"dir":"ltr","class":"gmail_signature"},recursive=False)
+        if signature:
+            latest_mail=first_div.find('div',{"dir":"ltr"},recursive=False)
+            return str(latest_mail)
+        forward_and_reply=soup.find('div',{'dir':'gmail_quote'})
+        if forward_and_reply:
+          for div in forward_and_reply.find('div', {'dir':'ltr','class': 'gmail_attr'}):
+            if '---------- Forwarded message ---------' not in div.getText():
+                div.decompose()
+
 
         for div in soup.find_all("div", {'class': 'gmail_signature'}):
              div.decompose()
+
 
     # div_siblings = [first_div] + (first_div.find_next_siblings('div'))
 
