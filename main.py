@@ -2,7 +2,7 @@ from sample_test_cases import hotmail_outlook, gmail_mailspring
 from bs4 import BeautifulSoup
 import json
 import logging
-from exceptions import *
+from custom_exceptions import *
 
 logger = logging.getLogger(__name__)
 
