@@ -112,8 +112,6 @@ def trim_gmail(soup):
         for div in soup.find_all("div", {'class': 'gmail_signature'}):
             div.decompose()
 
-        # div_siblings = [first_div] + (first_div.find_next_siblings('div'))
-
         return str(first_div)
 
     except Exception as e:
@@ -122,27 +120,6 @@ def trim_gmail(soup):
 
 
 def trim_yahoo(soup):
-    # para_tag = soup.find('div', {"class": "yahoo-style-wrap"})
-    #
-    # if para_tag:
-    #     required_text = para_tag.find_all('div', {"dir": "ltr"})
-    #     return str(required_text)
-    #
-    # for EachPart in soup.select('div[class*="yahoo-style-wrap"]'):
-    #     return str(EachPart)
-    #
-    # signature_tag = soup.select('div[class*="signature"]')
-    # if signature_tag:
-    #     signature_tag[0].decompose()
-    #
-    # first_div = soup.find('div', {"dir": "ltr"})
-    #
-    # if first_div is None:
-    #     for EachPart in soup.select('div[class*="yahoo_quoted"]'):
-    #         return str(EachPart)
-    # else:
-    #     return str(first_div)
-
     yahoo_quoted_div = soup.body.find('div', {'class': 'yahoo-quoted'}, recursive=False)
     if yahoo_quoted_div:
         yahoo_quoted_div.decompose()
@@ -150,17 +127,22 @@ def trim_yahoo(soup):
     return str(soup)
 
 
-
-
 if __name__ == '__main__':
 
     try:
         all_mail_text = []
-        mail_client = 'yahoo'
+        mail_client = 'gmail'
+
+        sample_test_cases = {
+            'gmail': gmail.mail_responses,
+            'yahoo': yahoo.mail_responses,
+            'mailspring': mailspring.mail_responses,
+            'outlook': outlook.mail_responses
+        }
 
         sample_mails_list = [
             mail_response['message_body']
-            for mail_response in yahoo.mail_responses
+            for mail_response in sample_test_cases[mail_client]
         ]
 
         for sno, mail in enumerate(sample_mails_list):
