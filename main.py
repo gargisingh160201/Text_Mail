@@ -4,6 +4,7 @@ import json
 import logging
 from custom_exceptions import *
 import os
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -120,9 +121,15 @@ def trim_gmail(soup):
 
 
 def trim_yahoo(soup):
-    yahoo_quoted_div = soup.body.find('div', {'class': 'yahoo-quoted'}, recursive=False)
+
+    yahoo_quoted_div = soup.body.find('div', {'class': 'yahoo_quoted'}, recursive=False)
     if yahoo_quoted_div:
         yahoo_quoted_div.decompose()
+    yahoo_style_wrap=soup.body.find('div', {'class': re.compile('.*yahoo-style-wrap')})
+    if yahoo_style_wrap:
+        signature_tag=yahoo_style_wrap.find('div', {'class': re.compile('.*signature')})
+        if signature_tag:
+            signature_tag.decompose()
 
     return str(soup)
 
