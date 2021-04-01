@@ -137,7 +137,7 @@ if __name__ == '__main__':
 
     try:
         all_mail_text = []
-        mail_client = 'mailspring'
+        mail_client = 'gmail'
 
         sample_test_cases = {
             'gmail': gmail.mail_responses,
